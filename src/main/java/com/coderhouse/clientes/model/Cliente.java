@@ -12,11 +12,11 @@ public class Cliente {
     private String nombre;
     @Column(name = "APELLIDO")
     private String apellido;
-    @Column(name = "EDAD")
-    private int edad;
     @Column(name = "DNI")
+    private int dni;
+    @Column(name = "CLIENTEID")
     @Id
-    private Long dni;
+    private int clienteid;
     //GETTERS AND SETTERS
     public String getNombre() {
         return nombre;
@@ -34,26 +34,26 @@ public class Cliente {
         this.apellido = apellido;
     }
 
-    public int getEdad() {
-        return edad;
+    public int getClienteid() {
+        return clienteid;
     }
 
-    public void setEdad(int edad) {
-        this.edad = edad;
+    public void setClienteid(int clienteid) {
+        this.clienteid = clienteid;
     }
 
-    public Long getDni() {
+    public int getDni() {
         return dni;
     }
 
-    public void setDni(Long dni) {
+    public void setDni(int dni) {
         this.dni = dni;
     }
     //Constructor
-    public Cliente(String nombre, String apellido, int edad, Long dni) {
+    public Cliente(String nombre, String apellido, int edad, int dni) {
         this.nombre = nombre;
         this.apellido = apellido;
-        this.edad = edad;
+        this.clienteid = clienteid;
         this.dni = dni;
     }
 

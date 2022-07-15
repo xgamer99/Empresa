@@ -3,10 +3,7 @@ package com.coderhouse.clientes.controller;
 import com.coderhouse.clientes.model.Cliente;
 import com.coderhouse.clientes.service.ClienteService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -20,8 +17,12 @@ public class ClienteController {
         return clienteService.buscarTodosLosClientes();
     }
     @GetMapping("/{dni}")   //DniEs path parametro
-    public Cliente buscarPorDni(@PathVariable Long dni){
-        return clienteService.buscarPorDni(dni);
+    public Cliente buscarPorDni(@PathVariable int cID){
+        return clienteService.buscarPorClientID(cID);
 
+    }
+    @PostMapping("/add")
+    public Cliente newEntity(@RequestBody Cliente cliente) {
+        return this.clienteService.save(cliente);
     }
 }

@@ -11,12 +11,21 @@ public class ClienteServiceImp implements ClienteService{
     @Autowired
     private ClienteRepository repository;
     @Override
-    public Cliente buscarPorDni(Long dni) {
-        return repository.findById(dni).orElse(null);
+    public Cliente buscarPorClientID(int cID) {
+        return repository.findById(cID).orElse(null);
     }
 
     @Override
     public List<Cliente> buscarTodosLosClientes() {
         return repository.findAll();
+    }
+
+    @Override
+    public Cliente save(Cliente cliente) {
+        if (buscarPorClientID(cliente.getClienteid()) == null) {
+            return this.repository.save(cliente);
+        }else {
+            return null;
+        }
     }
 }

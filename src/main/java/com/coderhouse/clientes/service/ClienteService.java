@@ -5,6 +5,8 @@ import com.coderhouse.clientes.model.Cliente;
 import java.util.List;
 
 public interface ClienteService {
-    Cliente buscarPorDni(Long dni);
+    Cliente buscarPorClientID(int cID);
     List<Cliente> buscarTodosLosClientes();
+
+    Cliente save(Cliente cliente);
 }
