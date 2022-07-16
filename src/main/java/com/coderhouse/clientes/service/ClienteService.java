@@ -9,4 +9,5 @@ public interface ClienteService {
     List<Cliente> buscarTodosLosClientes();
 
     Cliente save(Cliente cliente);
+    Cliente modify(Cliente cliente, int cID) throws Exception;
 }

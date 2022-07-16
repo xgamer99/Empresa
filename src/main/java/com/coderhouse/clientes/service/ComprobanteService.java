@@ -1,11 +1,11 @@
 package com.coderhouse.clientes.service;
 
-import com.coderhouse.clientes.model.Cliente;
-import com.coderhouse.clientes.model.Comprobante;
+import com.coderhouse.clientes.dto.ComprobanteDTO;
+
 
 import java.util.List;
 
 public interface ComprobanteService {
-    Comprobante buscarPorId(int id);
-    List<Comprobante> buscarTodosLosComprobantes();
+    ComprobanteDTO buscarPorId(int id);
+    List<ComprobanteDTO> buscarTodosLosComprobantes();
 }

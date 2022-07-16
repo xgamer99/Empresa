@@ -12,9 +12,9 @@ public class Producto {
     @Id
     private int productoId;
     @Column(name = "CANTIDAD")
-    private int fecha;
+    private int cantidad;
     @Column(name = "CODIGO")
-    private int codigo;
+    private String codigo;
     @Column(name = "PRECIO")
     private double precio;
     @Column(name = "DESCRIPCION")
@@ -30,19 +30,20 @@ public class Producto {
         this.productoId = productoId;
     }
 
-    public int getFecha() {
-        return fecha;
+    public int getCantidad() {
+        return cantidad;
     }
 
-    public void setFecha(int fecha) {
-        this.fecha = fecha;
+
+    public void setCantidad(int cantidad) {
+        this.cantidad = cantidad;
     }
 
-    public int getCodigo() {
+    public String getCodigo() {
         return codigo;
     }
 
-    public void setCodigo(int codigo) {
+    public void setCodigo(String codigo) {
         this.codigo = codigo;
     }
 
@@ -68,9 +69,9 @@ public class Producto {
     public Producto() {
     }
 
-    public Producto(int productoId, int fecha, int codigo, double precio, String descripcion) {
+    public Producto(int productoId, int cantidad, String codigo, double precio, String descripcion) {
         this.productoId = productoId;
-        this.fecha = fecha;
+        this.cantidad = cantidad;
         this.codigo = codigo;
         this.precio = precio;
         this.descripcion = descripcion;

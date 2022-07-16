@@ -25,7 +25,29 @@ public class ClienteServiceImp implements ClienteService{
         if (buscarPorClientID(cliente.getClienteid()) == null) {
             return this.repository.save(cliente);
         }else {
-            return null;
+            try {
+                throw new Exception("El cliente ya existe");
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+        }
+    }
+    @Override
+    public Cliente modify(Cliente cliente, int cID) throws Exception {
+        return verificarID(cliente,cID);
+    }
+    public Cliente verificarID(Cliente c, int cID) throws Exception {          //Se verifica que la modificacion de datos o ID no interfiera con otro cliente existente
+        //Primero verifico que el id del ciente modificado y el cID sean iguales
+        if(c.getClienteid()==cID){
+            //throw new Exception("Ya existe un cliente con la misma id");
+            return this.repository.save(c);
+        }else{      //En caso que no sean iguales los id, es decir quiera mover un clienteid a otra posicion, verifico que no exista uno con la id nueva
+            if (buscarPorClientID(c.getClienteid()) == null) {      //Busco en la id nueva, si es que existe un cliente con esa id, en caso de que no exista se puede mover el cliente a esa posicion
+                repository.delete(buscarPorClientID(cID));
+                return this.repository.save(c);
+            }else{              //La modificacion tiene un id nuevo pero existe un cliente, entonces no se puede hacer esa modificacion
+                throw new Exception("Ya existe un cliente con la misma id");
+            }
         }
     }
 }

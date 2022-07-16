@@ -16,13 +16,17 @@ public class ClienteController {
     public List<Cliente> buscarTodosLosclientes(){
         return clienteService.buscarTodosLosClientes();
     }
-    @GetMapping("/{dni}")   //DniEs path parametro
-    public Cliente buscarPorDni(@PathVariable int cID){
+    @GetMapping("/{cID}")   //IDEs path parametro
+    public Cliente buscarPorId(@PathVariable int cID){
         return clienteService.buscarPorClientID(cID);
 
     }
     @PostMapping("/add")
     public Cliente newEntity(@RequestBody Cliente cliente) {
         return this.clienteService.save(cliente);
+    }
+    @PostMapping("/modify/{cID}")
+    public Cliente modificar(@RequestBody Cliente cliente,@PathVariable int cID) throws Exception {
+        return this.clienteService.modify(cliente,cID);
     }
 }

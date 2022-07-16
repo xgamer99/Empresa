@@ -1,32 +1,31 @@
 package com.coderhouse.clientes.controller;
 
-import com.coderhouse.clientes.model.Cliente;
-import com.coderhouse.clientes.service.ClienteService;
+import com.coderhouse.clientes.model.Producto;
+import com.coderhouse.clientes.service.ProductoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("coderhouse/clientes")
-public class ClienteController {
+@RequestMapping("coderhouse/productos")
+public class ProductoController {
     @Autowired
-    private ClienteService clienteService;
+    private ProductoService productoService;
     @GetMapping("")
-    public List<Cliente> buscarTodosLosclientes(){
-        return clienteService.buscarTodosLosClientes();
+    public List<Producto> buscarTodosLosProductos(){
+        return productoService.buscarTodosLosProductos();
     }
     @GetMapping("/{cID}")   //IDEs path parametro
-    public Cliente buscarPorId(@PathVariable int cID){
-        return clienteService.buscarPorClientID(cID);
-
+    public Producto buscarPorId(@PathVariable int cID){
+        return productoService.buscarPorId(cID);
     }
     @PostMapping("/add")
-    public Cliente newEntity(@RequestBody Cliente cliente) {
-        return this.clienteService.save(cliente);
+    public Producto newEntity(@RequestBody Producto producto) {
+        return this.productoService.save(producto);
     }
     @PostMapping("/modify/{cID}")
-    public Cliente modificar(@RequestBody Cliente cliente,@PathVariable int cID) throws Exception {
-        return this.clienteService.modify(cliente,cID);
+    public Producto modificar(@RequestBody Producto producto,@PathVariable int cID) throws Exception {
+        return this.productoService.modify(producto,cID);
     }
 }

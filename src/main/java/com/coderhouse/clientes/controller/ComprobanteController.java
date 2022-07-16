@@ -1,32 +1,23 @@
 package com.coderhouse.clientes.controller;
 
-import com.coderhouse.clientes.model.Cliente;
-import com.coderhouse.clientes.service.ClienteService;
+import com.coderhouse.clientes.dto.ComprobanteDTO;
+import com.coderhouse.clientes.service.ComprobanteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("coderhouse/clientes")
-public class ClienteController {
+@RequestMapping("coderhouse/comprobantes")
+public class ComprobanteController {
     @Autowired
-    private ClienteService clienteService;
+    private ComprobanteService comprobanteService;
     @GetMapping("")
-    public List<Cliente> buscarTodosLosclientes(){
-        return clienteService.buscarTodosLosClientes();
+    public List<ComprobanteDTO> buscarTodosLosComprobantes(){
+        return comprobanteService.buscarTodosLosComprobantes();
     }
     @GetMapping("/{cID}")   //IDEs path parametro
-    public Cliente buscarPorId(@PathVariable int cID){
-        return clienteService.buscarPorClientID(cID);
-
-    }
-    @PostMapping("/add")
-    public Cliente newEntity(@RequestBody Cliente cliente) {
-        return this.clienteService.save(cliente);
-    }
-    @PostMapping("/modify/{cID}")
-    public Cliente modificar(@RequestBody Cliente cliente,@PathVariable int cID) throws Exception {
-        return this.clienteService.modify(cliente,cID);
+    public ComprobanteDTO buscarPorId(@PathVariable int cID){
+        return comprobanteService.buscarPorId(cID);
     }
 }

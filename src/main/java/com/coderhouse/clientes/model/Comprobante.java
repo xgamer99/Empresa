@@ -14,11 +14,11 @@ public class Comprobante {
     private int comprobanteId;
     @Column(name = "FECHA")
     private Date fecha;
-    @Column(name = "LINEAS")
+    @Column(name = "LINEAS")        //En comprobanteDTO  se transforman las lineas en productos, el formato del string es "id del producto/cantidad del producto llevado/precio unitario"
     private String descripcion;
     @Column(name = "TOTAL")
     private double total;
-    @Column(name = "CANTIDAD")
+    @Column(name = "CANTIDAD")      //Cantidad de producto llevado
     private int cantidad;
     @Column(name = "CLIENTEID")
     private int clienteID;
