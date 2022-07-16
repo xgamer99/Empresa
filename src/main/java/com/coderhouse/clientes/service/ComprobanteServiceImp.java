@@ -77,7 +77,6 @@ public class ComprobanteServiceImp implements ComprobanteService{
         double totalSum = 0;
         for(int i = 0; i<listaP.size();i++){
             totalSum += listaP.get(i).getPrecio() * listaP.get(i).getCantidad();
-            System.out.println(totalSum);
         }
         return totalSum;
     }
