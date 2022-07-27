@@ -1,7 +1,5 @@
 package com.coderhouse.clientes.dto;
 
-import com.coderhouse.clientes.model.Producto;
-
 import java.util.Date;
 import java.util.List;
 
@@ -9,7 +7,7 @@ public class ComprobanteDTO {
     private int comprobanteId;
 
     private Date fecha;
-    private List<Producto> descripcion;
+    private List<ProductoDTO> descripcion;
     private double total;
     private int cantidad;
     private int clienteID;
@@ -31,11 +29,11 @@ public class ComprobanteDTO {
         this.fecha = fecha;
     }
 
-    public List<Producto> getDescripcion() {
+    public List<ProductoDTO> getDescripcion() {
         return descripcion;
     }
 
-    public void setDescripcion(List<Producto> descripcion) {
+    public void setDescripcion(List<ProductoDTO> descripcion) {
         this.descripcion = descripcion;
     }
 
@@ -63,7 +61,7 @@ public class ComprobanteDTO {
         this.clienteID = clienteID;
     }
     //Constructor
-    public ComprobanteDTO(int comprobanteId, Date fecha, List<Producto> descripcion, double total, int cantidad, int clienteID) {
+    public ComprobanteDTO(int comprobanteId, Date fecha, List<ProductoDTO> descripcion, double total, int cantidad, int clienteID) {
         this.comprobanteId = comprobanteId;
         this.fecha = fecha;
         this.descripcion = descripcion;

@@ -1,5 +1,6 @@
 package com.coderhouse.clientes.service;
 
+import com.coderhouse.clientes.handle.ApiException;
 import com.coderhouse.clientes.model.Producto;
 import com.coderhouse.clientes.repository.ProductoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,10 +35,21 @@ public class ProductoServiceImp implements ProductoService{
         }
     }
     @Override
-    public Producto modify(Producto producto, int cID) throws Exception {
+    public Producto modify(Producto producto, int cID) throws ApiException {
         return verificarID(producto,cID);
     }
-    public Producto verificarID(Producto p, int cID) throws Exception {          //Se verifica que la modificacion de datos o ID no interfiera con otro producto existente
+
+    @Override
+    public void delete(int cID) throws ApiException {
+        if(this.repository.findById(cID).orElse(null) != null){
+            repository.delete(buscarPorId(cID));
+            throw new ApiException("Producto Eliminado");
+        }else{
+            throw new ApiException("No existe el producto");
+        }
+    }
+
+    public Producto verificarID(Producto p, int cID) throws ApiException {          //Se verifica que la modificacion de datos o ID no interfiera con otro producto existente
         //Primero verifico que el id del producto modificado y el cID sean iguales
         if(p.getProductoId()==cID){
             return this.repository.save(p);
@@ -46,7 +58,7 @@ public class ProductoServiceImp implements ProductoService{
                 repository.delete(buscarPorId(cID));        //Borro el producto para que no este dupliado al cambiar la id
                 return this.repository.save(p);             //Guardo el producto con su nueva ID
             }else{              //La modificacion tiene un id nuevo pero existe un producto con esa id, entonces no se puede hacer esa modificacion
-                throw new Exception("Ya existe un producto con la misma id");
+                throw new ApiException("Ya existe un producto con la misma id");
             }
         }
     }

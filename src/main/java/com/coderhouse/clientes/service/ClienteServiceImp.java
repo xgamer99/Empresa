@@ -1,5 +1,6 @@
 package com.coderhouse.clientes.service;
 
+import com.coderhouse.clientes.handle.ApiException;
 import com.coderhouse.clientes.model.Cliente;
 import com.coderhouse.clientes.repository.ClienteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,10 +34,21 @@ public class ClienteServiceImp implements ClienteService{
         }
     }
     @Override
-    public Cliente modify(Cliente cliente, int cID) throws Exception {
+    public Cliente modify(Cliente cliente, int cID) throws ApiException {
         return verificarID(cliente,cID);
     }
-    public Cliente verificarID(Cliente c, int cID) throws Exception {          //Se verifica que la modificacion de datos o ID no interfiera con otro cliente existente
+
+    @Override
+    public void delete(int cID) throws ApiException {
+        if(this.repository.findById(cID).orElse(null) != null){
+            repository.delete(buscarPorClientID(cID));
+            throw new ApiException("Cliente Eliminado");
+        }else{
+            throw new ApiException("No existe ese cliente");
+        }
+    }
+
+    public Cliente verificarID(Cliente c, int cID) throws ApiException {          //Se verifica que la modificacion de datos o ID no interfiera con otro cliente existente
         //Primero verifico que el id del ciente modificado y el cID sean iguales
         if(c.getClienteid()==cID){
             //throw new Exception("Ya existe un cliente con la misma id");
@@ -46,7 +58,7 @@ public class ClienteServiceImp implements ClienteService{
                 repository.delete(buscarPorClientID(cID));
                 return this.repository.save(c);
             }else{              //La modificacion tiene un id nuevo pero existe un cliente, entonces no se puede hacer esa modificacion
-                throw new Exception("Ya existe un cliente con la misma id");
+                throw new ApiException("Ya existe un cliente con la misma id");
             }
         }
     }

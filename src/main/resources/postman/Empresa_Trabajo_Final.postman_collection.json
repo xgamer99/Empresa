@@ -1,0 +1,249 @@
+{
+	"info": {
+		"_postman_id": "d6d2ce6c-25aa-443b-8d6c-3f4a641925a4",
+		"name": "Empresa_Trabajo_Final",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "21783927"
+	},
+	"item": [
+		{
+			"name": "localhost:9081/empresa/comprobantes",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "localhost:9081/empresa/comprobantes",
+					"host": [
+						"localhost"
+					],
+					"port": "9081",
+					"path": [
+						"empresa",
+						"comprobantes"
+					]
+				},
+				"description": "Ver todos los comprobantes"
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:9081/empresa/comprobantes/add",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "    {   \"clienteId\": 2,\r\n        \"productos\":[\r\n            {\r\n                \"cantidad\": 1,\r\n                \"idProducto\": 1\r\n            },\r\n            {\r\n                \"cantidad\": 1,\r\n                \"idProducto\": 2\r\n            }\r\n        ]\r\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:9081/empresa/comprobantes/add",
+					"host": [
+						"localhost"
+					],
+					"port": "9081",
+					"path": [
+						"empresa",
+						"comprobantes",
+						"add"
+					]
+				},
+				"description": "Hacer una compra"
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:9081/empresa/clientes",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "localhost:9081/empresa/clientes",
+					"host": [
+						"localhost"
+					],
+					"port": "9081",
+					"path": [
+						"empresa",
+						"clientes"
+					]
+				},
+				"description": "Ver clientes"
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:9081/empresa/clientes/add",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n        \"nombre\": \"Juan\",\r\n        \"apellido\": \"Peralta\",\r\n        \"dni\": 12345668,\r\n        \"clienteid\": 5\r\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:9081/empresa/clientes/add",
+					"host": [
+						"localhost"
+					],
+					"port": "9081",
+					"path": [
+						"empresa",
+						"clientes",
+						"add"
+					]
+				},
+				"description": "Nuevo cliente"
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:9081/empresa/clientes/delete/5",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "localhost:9081/empresa/clientes/delete/5",
+					"host": [
+						"localhost"
+					],
+					"port": "9081",
+					"path": [
+						"empresa",
+						"clientes",
+						"delete",
+						"5"
+					]
+				},
+				"description": "Eliminar cliente"
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:9081/empresa/productos",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:9081/empresa/productos",
+					"host": [
+						"localhost"
+					],
+					"port": "9081",
+					"path": [
+						"empresa",
+						"productos"
+					]
+				},
+				"description": "Ver productos"
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:9081/empresa/productos/add",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n        \"productoId\": 8,\r\n        \"cantidad\": 12,\r\n        \"codigo\": \"A123456789\",\r\n        \"precio\": 125.0,\r\n        \"descripcion\": \"Pan lactal\"\r\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:9081/empresa/productos/add",
+					"host": [
+						"localhost"
+					],
+					"port": "9081",
+					"path": [
+						"empresa",
+						"productos",
+						"add"
+					]
+				},
+				"description": "Añadir producto"
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:9081/empresa/productos/modify/1",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n        \"productoId\": 1,\r\n        \"cantidad\": 12,\r\n        \"codigo\": \"A123456789\",\r\n        \"precio\": 125.0,\r\n        \"descripcion\": \"Pan\"\r\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:9081/empresa/productos/modify/1",
+					"host": [
+						"localhost"
+					],
+					"port": "9081",
+					"path": [
+						"empresa",
+						"productos",
+						"modify",
+						"1"
+					]
+				},
+				"description": "Modificar producto"
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:9081/empresa/productos/delete/8",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "localhost:9081/empresa/productos/delete/8",
+					"host": [
+						"localhost"
+					],
+					"port": "9081",
+					"path": [
+						"empresa",
+						"productos",
+						"delete",
+						"8"
+					]
+				},
+				"description": "Eliminar producto"
+			},
+			"response": []
+		}
+	]
+}

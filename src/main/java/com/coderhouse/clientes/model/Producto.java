@@ -5,9 +5,10 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+
 @Entity
 @Table(name = "PRODUCTO")
-public class Producto {
+public class Producto{
     @Column(name = "PRODUCTOID")
     @Id
     private int productoId;
@@ -76,4 +77,5 @@ public class Producto {
         this.precio = precio;
         this.descripcion = descripcion;
     }
+
 }

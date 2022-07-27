@@ -1,28 +1,36 @@
 package com.coderhouse.clientes.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "COMPROBANTE")
+@NamedQuery(name="Comprobante.findAll", query="SELECT c FROM Comprobante c")
 public class Comprobante {
-    @Column(name = "COMPROBANTEID")
     @Id
+    @Column(name = "COMPROBANTEID")
     private int comprobanteId;
     @Column(name = "FECHA")
     private Date fecha;
-    @Column(name = "LINEAS")        //En comprobanteDTO  se transforman las lineas en productos, el formato del string es "id del producto/cantidad del producto llevado/precio unitario"
-    private String descripcion;
     @Column(name = "TOTAL")
     private double total;
     @Column(name = "CANTIDAD")      //Cantidad de producto llevado
     private int cantidad;
-    @Column(name = "CLIENTEID")
-    private int clienteID;
+    @ManyToOne
+    @JoinColumn(name = "CLIENTEID")
+    private Cliente clienteID;
+    @OneToMany(mappedBy = "comprobante", cascade = CascadeType.ALL)
+    private List<ListaProductos> listaProductos;
     //GETTERS AND SETTERS
+
+    public List<ListaProductos> getListaProductos() {
+        return listaProductos;
+    }
+
+    public void setListaProductos(List<ListaProductos> listaProductos) {
+        this.listaProductos = listaProductos;
+    }
 
     public Date getFecha() {
         return fecha;
@@ -32,13 +40,6 @@ public class Comprobante {
         this.fecha = fecha;
     }
 
-    public String getDescripcion() {
-        return descripcion;
-    }
-
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
-    }
 
     public double getTotal() {
         return total;
@@ -57,10 +58,10 @@ public class Comprobante {
     }
 
     public int getClienteID() {
-        return clienteID;
+        return clienteID.getClienteid();
     }
 
-    public void setClienteID(int clienteID) {
+    public void setClienteID(Cliente clienteID) {
         this.clienteID = clienteID;
     }
 
@@ -77,12 +78,10 @@ public class Comprobante {
     public Comprobante() {
     }
 
-    public Comprobante(Date fecha, String descripcion, double total, int cantidad, int clienteID, int comprobanteId) {
+    public Comprobante(Date fecha, double total, int cantidad, Cliente clienteID) {
         this.fecha = fecha;
-        this.descripcion = descripcion;
         this.total = total;
         this.cantidad = cantidad;
-        this.clienteID = clienteID;
-        this.comprobanteId = comprobanteId;
+        this.clienteID= (clienteID);
     }
 }

@@ -1,0 +1,5 @@
+CREATE DATABASE ventas;
+CREATE TABLE ventas.CLIENTE (nombre varchar(150) not null, apellido varchar(150) not null, dni int not null, clienteid int not null,primary key (clienteid));
+CREATE TABLE ventas.COMPROBANTE (fecha DATE not null, total DOUBLE not null, cantidad int not null, clienteid int not null AUTO_INCREMENT, comprobanteid int not null,primary key (comprobanteid),CONSTRAINT FK_CLIENTE FOREIGN KEY (clienteid) REFERENCES CLIENTE(clienteid));
+CREATE TABLE ventas.PRODUCTO (descripcion varchar(150), precio DOUBLE not null, codigo varchar(10) not null, cantidad int not null, productoid int not null,primary key (productoid));
+CREATE TABLE ventas.LISTADECOMPROBANTE (lineaid int not null AUTO_INCREMENT ,nombreproducto varchar(150), precio DOUBLE not null, cantidad int not null, productoid int not null, comprobanteid int not null,PRIMARY KEY (lineaid),CONSTRAINT FK_COMPROBANTE FOREIGN KEY (comprobanteid) REFERENCES COMPROBANTE(comprobanteid));

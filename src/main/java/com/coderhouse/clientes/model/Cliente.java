@@ -1,22 +1,24 @@
 package com.coderhouse.clientes.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "CLIENTE")
-public class Cliente {
+public class Cliente{
     @Column(name = "NOMBRE")
     private String nombre;
     @Column(name = "APELLIDO")
     private String apellido;
     @Column(name = "DNI")
     private int dni;
-    @Column(name = "CLIENTEID")
     @Id
-    private int clienteid;
+    //@GeneratedValue(strategy=GenerationType.IDENTITY)
+    @Column(name = "CLIENTEID")
+    private Integer clienteid;
+    @OneToMany(mappedBy = "clienteID", cascade = CascadeType.ALL)
+    private List<Comprobante> comprobante;
+
     //GETTERS AND SETTERS
     public String getNombre() {
         return nombre;

@@ -1,5 +1,6 @@
 package com.coderhouse.clientes.controller;
 
+import com.coderhouse.clientes.handle.ApiException;
 import com.coderhouse.clientes.model.Producto;
 import com.coderhouse.clientes.service.ProductoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("coderhouse/productos")
+@RequestMapping("empresa/productos")
 public class ProductoController {
     @Autowired
     private ProductoService productoService;
@@ -25,7 +26,11 @@ public class ProductoController {
         return this.productoService.save(producto);
     }
     @PostMapping("/modify/{cID}")
-    public Producto modificar(@RequestBody Producto producto,@PathVariable int cID) throws Exception {
+    public Producto modificar(@RequestBody Producto producto,@PathVariable int cID) throws ApiException {
         return this.productoService.modify(producto,cID);
+    }
+    @PostMapping("/delete/{cID}")
+    public void delete(@PathVariable int cID) throws ApiException {
+        this.productoService.delete(cID);
     }
 }
